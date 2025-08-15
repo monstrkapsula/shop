@@ -6,10 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -28,7 +25,7 @@ public class SecurityConfig{
         // конфигурируем работу Spring Security
 //.csrf().disable() // отключаем защиту от межсайтовой подделки запросов
         http
-                .authorizeHttpRequests() // указываем что все страницы должны быть защищены аутентификацией
+                .authorizeHttpRequests() // указываем, что все страницы должны быть защищены аутентификацией
                 .requestMatchers("/admin").hasRole("ADMIN") // указываем на то что страница /admin доступна пользователю с ролью ADMIN
                 // указываем что не аутентифицированные пользователя могут зайти на страницу аутентификации и на объект ошибки
                 // c помощью permitAll указываем что не аутентифицированные пользователи могут заходить на перечисленные страницы
