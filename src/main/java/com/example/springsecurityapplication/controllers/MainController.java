@@ -49,7 +49,7 @@ public class MainController {
 
     @GetMapping("/person account")
     public String index(Model model){
-        // Получаем объект аутентификации -> с помощью SpringContextHolder обращаемся к контексту и на нем вызываем метод аутентификации. Из сессии текущего пользователя получаем объект, который был положен в данную сессию после аутентификации пользователя
+        // Получаем объект аутентификации. С помощью SpringContextHolder обращаемся к контексту, и на нем вызываем метод аутентификации. Из сессии текущего пользователя получаем объект, который был положен в данную сессию после аутентификации пользователя
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         String role = personDetails.getPerson().getRole();
@@ -201,7 +201,7 @@ public class MainController {
             productList.add(productService.getProductId(cart.getProductId()));
         }
 
-        // Вычисление итоговой цена
+        // Вычисление итоговой цены
         float price = 0;
         for (Product product: productList) {
             price += product.getPrice();
